@@ -9,6 +9,15 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 done;
 unset file;
 
+# Trasnverse dotfiles dir for path.sh and aliases.sh
+for pattern in ~/.dotfiles/**/{path,aliases}.sh; do
+	for file in $pattern; do
+		[ -r "$file" ] && [ -f "$file" ] && source "$file";
+	done;
+	unset file
+done;
+unset pattern;
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
